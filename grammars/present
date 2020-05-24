@@ -1,0 +1,4 @@
+0: plot --> split(x){ 0.42 : side | 0.16 : r | 0.42 : side}
+1: side --> split(y){0.42 : b | 0.16 : r | 0.42 : b}
+2: b --> colour(blue)
+3: r --> colour(red)

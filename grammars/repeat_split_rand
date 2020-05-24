@@ -1,0 +1,1 @@
+0: plot --> S(10,1,1) repeat(x){0.1 : split(x){~rand : colour(red) | ~0.5: colour(blue)}}

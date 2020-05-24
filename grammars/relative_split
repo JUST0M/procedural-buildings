@@ -1,0 +1,4 @@
+0: plot --> S(5,7,9) split(x){~1 : r | 1 : b | ~1 : s2}
+1: r --> colour(red)
+2: b --> colour(blue)
+3: s2 --> split(y){~0.1 : r | ~0.1 : b | ~0.7 : r | ~0.1 : b}

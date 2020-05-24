@@ -1,0 +1,6 @@
+wallThickness = 1
+plot --> split(z){~1 : main | ~1 : I(cabinRoof)}
+main --> split(y){~1 : foo | ~5 : mid | wallThickness : bar}
+foo --> split(x){~1 : split(y){~1 : nil | wallThickness : I(rect)} | ~2 : I(cabinEntrance) | ~3 : split(y){~1 : nil | wallThickness : I(rect)}}
+mid --> split(x){wallThickness : I(rect) | ~1 : nil | wallThickness : I(rect)}
+bar --> I(rect)

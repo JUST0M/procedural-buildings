@@ -1,0 +1,6 @@
+rule0 --> rule1 : 0.40000
+rule0 --> rule4 : 0.60000
+rule1 --> split(0){~(666.66667) : rule2 | ~(333.33333) : rule3}
+rule2 --> split(2){~(100.00000) : I(rect) | ~(50.00000) : I(triangle)}
+rule3 --> split(2){~(rand(43.08069, 54.50209)) : I(rect) | ~(rand(95.49790999999999, 106.91931)) : nil}
+rule4 --> split(0){~(333.33333) : rule3 | ~(666.66667) : rule2}

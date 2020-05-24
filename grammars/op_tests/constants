@@ -1,0 +1,3 @@
+foo = 7
+bar = 2
+plot --> split(z){~foo : I(rect) | ~(foo-bar) : I(rect)}

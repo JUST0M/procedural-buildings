@@ -1,0 +1,22 @@
+building_height = 10
+door_width = 1
+door_height = 2.5
+door_depth = 0.05
+window_spacing = 3
+window_width = 2
+window_height = 3
+window_depth = 0.05
+flatbrick_width = 0.5
+brick_length = 0.5
+0: plot --> S(~1,~1,building_height) facades T(0,0,building_height) roof
+1: facades --> comp(f){left : facade | right: facade | front : facade | back : facade | bottom : I(rect) | top : I(rect)}
+2: facade --> split(x){~1 : tiles | door_width*1.5 : entrance} : 0.2
+3: facade --> split(x){door_width*1.5 : entrance | ~1 : tiles} : 0.2
+4: facade --> tiles : 0.6
+5: tiles --> repeat(x){window_spacing : tile}
+6: tile --> split(x){~1 : wall | window_width : split(z){~2 : wall | window_height : window | ~1 : wall} | ~1 : wall}
+7: window --> S(~1,window_depth,~1) colour(1,1,1)
+8: entrance --> split(x){~1 : wall | door_width : split(z){door_height : door | ~1 : wall} | ~1 : wall}
+9: door --> S(~1,door_depth,~1) colour(red)
+10: wall --> I(rect)
+11: roof --> S(~1,~1,4) I(pyramid)

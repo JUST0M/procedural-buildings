@@ -1,0 +1,3 @@
+plot --> split(x){~2 : house | ~1 : garage}
+house --> split(z){~2 : I(rect) | ~1 : I(triangle)}
+garage --> split(z){~1 : I(rect) | ~2 : nil}

@@ -1,0 +1,1 @@
+plot --> split(x){~1: I(rect) | ~1: I(rect)}

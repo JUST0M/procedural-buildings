@@ -1,0 +1,35 @@
+wallDepth = 0.7
+windowDepth = 0.2
+windowDividerWidith = 0.3
+doorWidth = 2
+doorHeight = 4
+doorDepth = 0.8
+maxFloors = 2
+minFloors = 2
+railingThickness = 0.2
+railingSegmentLength = 1
+pillarWidth = 0.6
+twice --> split(y){~1 : plot | ~1 : plot}
+plot --> floors(randint(minFloors,maxFloors))
+floors(numFloors) --> split(z){~1 : base | ~(10*numFloors) : split(y){~1 : split(x){~1 : nil | ~20 : house(numFloors)} | ~1 : nil} | ~(10*(maxFloors-numFloors)) : nil}
+house(numFloors) --> split(z){~1 : bottomLevel | ~(numFloors-1) : repeatN(z,numFloors-1){level}}
+base --> I(rect)
+level --> I(rect) : 0.5
+level --> split(x){~1 : split(y){~1 : balcony | ~(rand(2,3)) : I(rect)} | ~(rand(5,6)) : I(rect)} : 0.5
+balcony --> split(z){~1 : I(rect) | ~3 : split(x){railingThickness : railings(y) | ~1 : split(y){railingThickness : railings(x) | ~1 : nil}} | ~6 : nil}
+bottomLevel --> split(x){~10 : split(y){~(rand(0,2)) : nil | ~10 : groundFloor} | ~(rand(0,2)) : nil}
+block --> I(rect)
+groundFloor --> split(x){~1 : leftWithPillar | ~(rand(3,4)) : frontAndBack | wallDepth : wall(y,x)} : 0.5
+groundFloor --> split(x){wallDepth : wall(y,x)| ~1 : frontAndBack | wallDepth : wall(y,x)} : 0.5
+leftWithPillar --> split(y){~1 : split(x){pillarWidth : split(y){pillarWidth : I(rect) | ~1 : nil} | ~1 : nil | wallDepth : doorBit} | ~(rand(1.5,2.5)) : I(rect)}
+frontAndBack --> split(y){wallDepth : frontWall | ~1 : nil | wallDepth : wall(x,y)}
+wall(ax1, ax2) --> I(rect) : 0.2
+wall(ax1, ax2) --> split(ax1){~(rand(1,2)) : I(rect) | ~1.5 : split(z){~1 : I(rect) | ~2 : windows(ax1, ax2) | ~1 : I(rect)} | ~(rand(1,2)) : I(rect)} : 0.8
+windows(ax1, ax2) --> repeatN(ax1, randint(1,4)){window(ax1, ax2)}
+window(ax1, ax2) --> split(ax1){windowDividerWidith : I(rect) | ~1 : split(ax2){~1 : nil | windowDepth : wind(ax1) | ~1 : nil}}
+wind(ax) : ax == y --> I(window3)
+wind(ax) : ax != y --> R(z,pi/2){I(window3)}
+frontWall --> I(rect)
+railings(ax) --> repeat(ax){railingSegmentLength : railing(ax)}
+railing(ax) --> split(ax){~1 : I(rect) | ~4 : split(z){~7 : nil | ~1 : I(rect)}}
+doorBit --> split(y){~1 : I(rect) | doorWidth : split(z){doorHeight : split(x){~1 : nil | doorDepth : R(z,pi/2){I(door)} | ~1 : nil} | ~1 : I(rect)} | ~1 : I(rect)}

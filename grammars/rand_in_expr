@@ -1,0 +1,7 @@
+myVar = 10
+foo = 2.75
+bar = foo + myVar
+0: plot --> T(myVar + 4 * rand,0,0) S(bar,foo,1) split(x){~(foo+bar) : r | ~foo : b | 1 : r | ~myVar : b} : rand * bar
+1: plot --> T(myVar + 4 * rand,0,0) S(bar,foo,1) split(y){~(foo+bar) : r | ~foo : b | 1 : r | ~myVar : b} : rand * myVar
+2: r --> colour(red)
+3: b --> colour(blue)

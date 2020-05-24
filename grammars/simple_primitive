@@ -1,0 +1,8 @@
+0: plot --> t s k c
+1: t --> T(2,6,4)
+2: s --> S(10,20,50)
+3: k --> R(z, 1)
+4: c --> split(x){2 : r | 3 : b | 5 : i}
+5: r --> colour(red)
+6: b --> colour(blue)
+7: i --> I(rect)

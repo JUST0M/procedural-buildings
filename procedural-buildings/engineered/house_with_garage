@@ -1,0 +1,6 @@
+rule0 --> split(0){~(666.66667) : rule1 | ~(333.33333000000005) : rule4}
+rule1 --> split(2){~(100.0) : rule2 | ~(50.0) : rule3}
+rule2 --> I(rect)
+rule3 --> I(triangle)
+rule4 --> split(2){~(50.0) : rule2 | ~(100.0) : rule5}
+rule5 --> nil

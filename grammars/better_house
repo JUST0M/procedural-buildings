@@ -1,0 +1,14 @@
+0: plot --> S(~1, ~1, 14) split(z){10 : house | 4 : roof}
+1: house --> comp(f){bottom : g | left : side | right : side | front : facade | back : stone}
+2: facade --> split(z){~1 : doorSection | ~1 : windowSection | ~1 : windowSection}
+3: doorSection --> split(x){~1 : stone | 1.5 : door | ~1 : stone}
+4: roof --> I(pyramid)
+5: b --> colour(blue)
+6: r --> colour(red)
+7: door --> S(~1,-0.05,~1) b
+8: windowSection --> split(z){~1 : stone | 2 : windowLevel | ~1 : stone}
+9: windowLevel --> split(x){~1 : stone | 1.5 : window | ~2 : stone | 1.5 : window | ~1 : stone}
+10: window --> colour(1,1,1)
+11: side --> stone
+12: g --> colour(0.374, 0.5, 0.23)
+13: stone --> colour(0.8039, 0.7137, 0.5176)

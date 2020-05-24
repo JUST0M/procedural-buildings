@@ -1,0 +1,1 @@
+plot --> repeatN(x, 10){I(rect)}

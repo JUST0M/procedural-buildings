@@ -1,0 +1,1 @@
+plot --> R(z, pi/2){split(x){~1 : I(rect) | ~1 : I(rect)}}

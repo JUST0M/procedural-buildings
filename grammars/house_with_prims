@@ -1,0 +1,33 @@
+height = 11
+roofHeight = 3
+houseHeight = height - roofHeight
+doorHeight = 2
+doorWidth = 1
+doorDepth = 0.1
+windowHeight = 2
+windoWidth = 1
+windowDepth = 0.1
+brickHeight = 0.4
+brickWidth = 0.8
+brickColourVariation = 0.02
+brickR = 0.8039
+brickG = 0.7137
+brickB = 0.5176
+0: plot --> S(~1, ~1, height) split(z){houseHeight : house | roofHeight : roof}
+1: house --> comp(f){bottom : g | left : side | right : side | front : facade | back : stone}
+2: facade --> split(z){doorHeight : doorSection | ~1 : windowSection | ~1 : windowSection}
+3: doorSection --> split(x){~1 : stone | doorWidth : door | ~1 : stone}
+4: roof --> I(pyramid)
+5: b --> colour(blue)
+6: r --> colour(red)
+7: door --> S(~1,-doorDepth,~1) I(door)
+8: windowSection --> split(z){~1 : stone | windowHeight : windowLevel | ~1 : stone}
+9: windowLevel --> split(x){~1 : stone | 1.5 : window | ~2 : stone | 1.5 : window | ~1 : stone}
+10: window --> S(~1,-windowDepth,~1) I(window)
+11: side --> repeat(z){brickHeight*2 : twoBrickLayers}
+12: g --> colour(0.374, 0.5, 0.23)
+13: stone --> colour(brickR, brickG, brickB)
+14: twoBrickLayers --> split(z){~1 : topLayer | ~1 : bottomLayer}
+15: topLayer --> split(y){brickWidth / 2 : brick | ~1 : repeat(y){brickWidth : brick}}
+16: bottomLayer  --> split(y){~1 : repeat(y){brickWidth : brick} | brickWidth / 2 : brick}
+17: brick --> S((rand/20)-0.025,~1,~1) colour(brickR, brickG, brickB)

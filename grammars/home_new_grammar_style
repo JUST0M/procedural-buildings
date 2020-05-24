@@ -1,0 +1,28 @@
+height = 13
+width = 20
+depth = 13
+roofHeight = 5
+houseHeight = height - roofHeight
+lowerRoofHeight = width / 4
+leftSideDepth = 4
+leftRightFrontDiff = 1
+doorHeight = 2
+doorWidth = 1
+doorDepth = 0.1
+windowHeight = 2
+windoWidth = 1
+windowDepth = 0.1
+brickR = 0.8039
+brickG = 0.7137
+brickB = 0.5176
+plot --> split(x){~1 : leftSide | ~1 : split(y){leftRightFrontDiff : nil | ~1 : main}}
+leftSide --> split(z){houseHeight : leftSideHouse | roofHeight : leftSideRoof}
+leftSideHouse --> I(rect)
+leftSideRoof --> split(y){leftSideDepth : split(z){lowerRoofHeight : S(~1, (depth+leftSideDepth)/2, ~1){I(triangle)} | ~1 : nil } | ~1 : leftBackRoof}
+main --> split(y){leftSideDepth - leftRightFrontDiff : frontMain | ~1 : split(z){houseHeight : mainHouse | roofHeight : mainRoof}}
+mainHouse --> I(rect)
+mainRoof --> split(x){~1 : R(z,pi/2){I(triangle)} | roofHeight : R(z,pi/2){I(hip)}}
+frontMain --> split(z){houseHeight*5/9 : frontMainHouse | houseHeight*4/9 : frontMainRoof | ~1 : nil}
+frontMainHouse --> I(rect)
+frontMainRoof --> R(z, 3*pi/2){I(right_angle_triangle)}
+leftBackRoof --> split(x){roofHeight : R(z,3*pi/2){I(hip)} | ~1 : R(z,pi/2){I(triangle)}}

@@ -1,0 +1,6 @@
+myVar = 10
+foo = 2.75
+bar = foo + myVar
+0: plot --> T(myVar/(2+7),0,0) S(bar,foo,1) split(x){~(foo+bar) : r | ~foo : b | 1 : r | ~myVar : b}
+1: r --> colour(red)
+2: b --> colour(blue)

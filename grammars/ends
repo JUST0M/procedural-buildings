@@ -1,0 +1,6 @@
+plot --> end(x,y,1)
+end(ax1,ax2,flip) --> hipEnd(ax1,ax2,flip) : 0.5
+end(ax1,ax2,flip) --> flatEnd(ax1,ax2) : 0.5
+hipEnd(ax1,ax2, flip) : flip == 1 --> split(ax2){~1 : R(z,pi/2){I(corner)} | ~1 : R(z,pi){I(corner)}}
+hipEnd(ax1,ax2, flip) : flip == 0 --> split(ax2){~1 : I(corner) | ~1 : R(z,3*pi/2){I(corner)}}
+flatEnd(ax1,ax2, flip) : flip == 1 --> split(ax2){~1 : R(z,3*pi/2){I(right_angle_triangle)} | ~1 : R(z,pi/2){I(right_angle_triangle)}}

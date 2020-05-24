@@ -1,0 +1,24 @@
+N = randint(8,10)
+M = randint(8,10)
+F = (N*N+M*M)/4
+plot --> columns(1)
+columns(c) : c <= M --> split(x){~4 : rows(c,1) | ~1 : nil | ~(5*(M-c)) : columns(c+1)}
+columns(c) : c > M --> nil
+rows(c,r) : r <= N --> split(y){~4 : block(c,r) | ~1 : nil | ~(5*(N-r)) : rows(c,r+1)}
+rows(c,r) : r > N --> nil
+block(c,r) --> repeatN(x, randint(3,5)){buildings((c*(M-c) + r*(N-r))/F)}
+buildings(height) --> repeatN(y, randint(3,5)){building(height)}
+building(height) --> skyscraperPlot(rand(0.7,1),height) : height
+building(height) --> smallBuilding(height) : 2+(1-height)
+smallBuilding(t) --> split(z){~rand(1,4) : I(rect) | ~10 : nil}
+skyscraperPlot(scalar, h) --> split(z){~(scalar*h) : skyscraper | ~(1-(scalar*h)) : nil}
+skyscraper --> tiered(randint(3,7)) : 0.2
+skyscraper --> I(rect) : 0.5
+skyscraper --> blocky : 0.3
+tiered(n) : n > 1 --> split(z){~(rand(0.5,1.5)) : I(rect) | ~(n-1) : nextTier(n-1)}
+tiered(n) : n == 1 --> I(rect)
+nextTier(numTiers) --> split(x){~1 : nil | ~(rand(5,10)) : nextTier1(numTiers) | ~1 : nil}
+nextTier1(numTiers) --> split(y){~1 : nil | ~(rand(5,10)) : tiered(numTiers) | ~1 : nil}
+blocky --> split(x){~1 : towers(0.7) | ~1 : towers(1) | ~1 : towers(0.7)}
+towers(h) --> split(y){~1 : tower(rand(0.3, 0.7),h) | ~1 : tower(rand(0.8, 1),h) | ~1 : tower(rand(0.3, 0.7),h)}
+tower(h,max) --> split(z){~(h*max) : I(rect) | ~(1-(h*max)) : nil}

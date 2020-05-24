@@ -1,0 +1,19 @@
+1.	Do any new symbols need to be recognised by the lexer to interpret this rule?
+	E.g. does the operation involve a new special character?
+	If so, add a new token to Lexer.tokens and define it using others as a guide
+
+2.	Add parsing rules to Parser so that the new operation can be interpreted. These rules will
+	require a new subclass of Op to be created that is specific to the new operation.
+	Define this in Ops.py. The __init__ function of this new op class is what will be
+	called by the parser when a new instance of that operation is parsed. It should
+	take all the information needed for the operation to run (except the context in
+	which to run). Most importantly, if the operation will result in child rules being
+	called upon then the labels of these child rules should be passed and
+	self.childRules should be set. This makes the Checker assign childOps that will be
+	used when the new operations run function is called.
+
+3.	Define the run function for the new operation. This will probably involve writing
+	a corresponding function in Scope. If it is a function that directly adds geometry to
+	the output file then you will need to add a function to ContextObj.py.
+
+4. Test the new operation by adding a new test grammar that makes use of it.

@@ -1,0 +1,15 @@
+wallThickness = rand+1
+windowWidth = rand/2 + 2
+windowHeight = rand/2 + 3
+windowDepth = rand/10 + 0.2
+plot --> split(z){~1 : base | ~20 : main | ~(rand*3+9) : roof}
+main --> split(y){wallThickness : frontWall | ~1 : mid | wallThickness : backWall}
+frontWall --> split(x){~(rand+1) : I(rect) | windowWidth : windowSec | ~(rand*2+0.5) : I(rect) | windowWidth : windowSec | ~(rand+1) : I(rect)}
+windowSec --> split(z){~1 : I(rect) | windowHeight : window | ~1 : I(rect)}
+window --> split(y){~1 : nil | windowDepth : I(rect) | ~1 : nil}
+backWall --> I(rect)
+mid --> split(x){wallThickness : leftWall | ~1 : nil | wallThickness : rightWall}
+leftWall --> I(rect)
+rightWall --> I(rect)
+roof --> split(x){~1 : R(z, 3*pi/2){I(hip)} | ~1 : R(z, pi/2){I(triangle)} | ~1 : R(z, pi/2){I(hip)}}
+base --> I(rect)

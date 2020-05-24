@@ -1,0 +1,3 @@
+plot --> foo(x)
+foo(axis) --> split(axis){~1 : bar(10*5) | bar(6)}
+bar(var) --> split(z){~var : I(rect) | ~1 : nil}

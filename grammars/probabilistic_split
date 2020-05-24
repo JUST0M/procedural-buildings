@@ -1,0 +1,3 @@
+plot --> split(x){~1 : I(rect) | ~1 : maybeSplit}
+maybeSplit --> plot : 0.5
+maybeSplit --> I(rect) : 0.5

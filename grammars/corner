@@ -1,0 +1,1 @@
+plot --> split(x){~1 : split(y){~1 : R(z,pi){I(right_angle_triangle)} | ~1 : R(z,3*pi/2){I(corner)}} | ~1 : split(y){~1 : R(z,pi/2){I(trough)} | ~1 : R(z,pi/2){I(right_angle_triangle)}}}

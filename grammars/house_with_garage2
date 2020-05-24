@@ -1,0 +1,4 @@
+plot --> split(x){~2 : house | ~1 : garage} : 0.5
+plot --> split(x){~1 : garage | ~2 : house} : 0.5
+house --> split(z){~2 : I(rect) | ~1 : I(triangle)}
+garage --> split(z){~(rand(0.75,1.25)) : I(rect) | ~2 : nil}

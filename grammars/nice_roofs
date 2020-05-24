@@ -1,0 +1,16 @@
+plot --> stickOut : 0.5
+plot --> split(y){~1 : nil | ~3 : noStickOut} : 0.5
+stickOut --> split(x){~1 : leftSide | ~3 : split(y){~1 : nil | ~4 : rightSide}}
+leftSide --> split(z){~2 : leftMain | ~1 : leftRoof}
+leftMain --> I(rect)
+leftRoof --> split(x){~1 : leftLeftRoof | ~1 : leftRightRoof}
+leftLeftRoof --> split(y){~3 : R(z,pi){I(right_angle_triangle)} | ~2 : R(z,3*pi/2){I(corner)}}
+leftRightRoof --> split(y){~1 : I(right_angle_triangle) | ~2 : R(z,pi/2){I(trough)} | ~2 : R(z,pi/2){I(right_angle_triangle)}}
+rightSide --> split(z){~2 : main | ~1 : rightRoof}
+noStickOut --> split(z){~2 : main | ~1 : roof1}
+main --> I(rect)
+roof1 --> split(x){~1 : leftHip | ~3 : rightRoof}
+rightRoof --> split(x){~2 : midRoof | ~1 : hip}
+midRoof --> split(y){~1 : R(z,3*pi/2){I(right_angle_triangle)} | ~1 : R(z,pi/2){I(right_angle_triangle)}}
+hip --> split(y){~1 : R(z,pi/2){I(corner)} | ~1 : R(z,pi){I(corner)}}
+leftHip --> split(y){~1 : I(corner) | ~1 : R(z, 3*pi/2){I(corner)}}

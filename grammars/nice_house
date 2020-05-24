@@ -1,0 +1,10 @@
+plot --> split(x){~2 : house | ~(rand/2 + 0.75) : garage} : 1
+plot --> split(x){~(rand/2 + 0.75) : garage | ~2 : house} : 1
+house --> split(z){~1 : roof | ~2 : houseMain}
+roof --> hippedRoof : 1
+roof --> gabledRoof : 1
+roof --> I(pyramid) : 1
+houseMain --> colour(rand, rand/2, rand/2 + 1/2)
+garage --> split(z){~(rand+1) : colour(blue) | rand : nil}
+hippedRoof --> split(y){~1 : I(hip) | ~3 : gabledRoof | ~1 : R(z,pi){I(hip)}}
+gabledRoof --> I(triangle)

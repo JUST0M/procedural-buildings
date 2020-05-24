@@ -1,0 +1,5 @@
+plot --> split(z){~2 : house | ~1 : I(pyramid)}
+house --> split(y){~1 : front_wall | ~20 : I(rect)}
+front_wall --> split(z){~2.5 : door_layer | ~2 : window_layer | ~1 : I(rect) | ~2 : window_layer | ~1 : I(rect)}
+door_layer --> split(x){~3 : I(rect) | ~1 : I(door) | ~3 : I(rect)}
+window_layer --> split(x){~1 : I(rect) | ~1 : R(z,pi/2){I(window3)} | ~2 : I(rect) | ~1 : R(z,pi/2){I(window3)} | ~1 : I(rect)}

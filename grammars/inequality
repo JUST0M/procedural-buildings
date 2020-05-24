@@ -1,0 +1,3 @@
+p = 5
+plot : p <= 5 --> I(rect)
+plot : p > 5 --> nil

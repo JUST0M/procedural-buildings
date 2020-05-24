@@ -1,0 +1,17 @@
+rule0 --> rule1 : 0.5
+rule0 --> rule13 : 0.5
+rule1 --> split(x){~(2) : rule2 | ~(rand/2 + 0.75) : rule10}
+rule2 --> split(z){~(1) : rule3 | ~(2) : rule9}
+rule3 --> rule4 : 0.3333333333333333
+rule3 --> rule6 : 0.3333333333333333
+rule3 --> rule8 : 0.3333333333333333
+rule4 --> split(y){~(1) : rule5 | ~(3) : rule6 | ~(1) : rule7}
+rule5 --> I(hip)
+rule6 --> I(triangle)
+rule7 --> R(z, 3.141592653589793){rule5}
+rule8 --> I(pyramid)
+rule9 --> colour(rand, rand/2, rand/2 + 0.5)
+rule10 --> split(z){~(rand + 1) : rule11 | rand : rule12}
+rule11 --> colour(0, 0, 1)
+rule12 --> nil
+rule13 --> split(x){~(rand/2 + 0.75) : rule10 | ~(2) : rule2}

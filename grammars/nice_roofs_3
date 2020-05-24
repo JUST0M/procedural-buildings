@@ -1,0 +1,16 @@
+setbackDistance = 1
+plot --> split(x){~(rand(0.8,1.2)) : leftSide | ~2 : mid | ~(rand(0.8, 1.2)) : rightSide}
+mid --> split(y){~setbackDistance : nil | ~1 : split(z){~2 : I(rect) | ~1 : midRoof}}
+midRoof --> split(y){~1 : R(z,3*pi/2){I(right_angle_triangle)} | ~1 : R(z,pi/2){I(right_angle_triangle)}}
+leftSide --> split(y){~setbackDistance : nil | ~1 : split(z){~2 : I(rect) | ~1 : endLeft}} : 0.5
+leftSide --> split(y){~setbackDistance : extrusion | ~1 : split(z){~2 : I(rect) | ~1 : I(roofCorner)}} : 0.5
+rightSide --> split(y){~setbackDistance : nil | ~1 : split(z){~2 : I(rect) | ~1 : endRight}} : 0.5
+rightSide --> split(y){~setbackDistance : extrusion | ~1 : split(z){~2 : I(rect) | ~1 : R(z,3*pi/2){I(roofCorner)}}} : 0.5
+extrusion --> split(y){~(rand(1,2)) : nil | ~4 : split(z){~2 : I(rect) | ~1 : split(y){~1 : sideFront | ~3 : sideMid}}}
+sideMid --> split(x){~1 : R(z,pi){I(right_angle_triangle)} | ~1 : I(right_angle_triangle)}
+sideFront --> sideMid
+sideFront --> split(x){~1 : I(corner) | ~1 : R(z,pi/2){I(corner)}}
+endLeft --> midRoof : 0.5
+endLeft --> split(y){~1 : I(corner) | ~1 : R(z,3*pi/2){I(corner)}}
+endRight --> midRoof : 0.5
+endRight --> split(y){~1 : R(z,pi/2){I(corner)} | ~1 : R(z,pi){I(corner)}}

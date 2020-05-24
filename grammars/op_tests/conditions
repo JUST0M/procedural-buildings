@@ -1,0 +1,3 @@
+plot --> foo(10)
+foo(N) : N > 0 --> split(x){~1 : I(rect) | ~(N-1) : foo(N-1)}
+foo(N) : N == 0 --> nil

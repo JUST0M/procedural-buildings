@@ -1,0 +1,21 @@
+plot --> split(x){~1 : side(0) | ~2 : mid | ~1 : side(1)}
+mid --> split(y){~1 : nil | ~3 : split(z){~2 : I(rect) | ~1 : midRoof}}
+midRoof --> split(y){~1 : R(z,3*pi/2){I(right_angle_triangle)} | ~1 : R(z,pi/2){I(right_angle_triangle)}}
+side(flip) --> split(y){~1 : nil | ~3 : split(z){~2 : I(rect) | ~1 : end(x,y,flip)}} : 0.5
+side(flip) --> split(z){~2 : I(rect) | ~1 : sideRoof(flip)} : 0.5
+sideRoof(flip) --> split(y){~1 : end(y,x,0) | ~3 : sideJoiner(flip)}
+sideJoiner(flip) : flip == 0 --> split(y){~1 : split(x){~1 : R(z,pi/2){I(right_angle_triangle)}} | ~1 : R(z,pi/2){I(trough)} | ~1 : split(x){~1 : R(z,3*pi/2){I(corner)} | ~1 : R(z,pi){I(right_angle_triangle)}}}
+sideJoiner(flip) : flip == 1 --> split(y){~1 : split(x){~1 : R(z,pi/2){I(trough)} | ~1 : R(z,pi/2){I(right_angle_triangle)}} | ~1 : split(x){~1 : R(z,pi){I(right_angle_triangle)} | ~1 : R(z,3*pi/2){I(corner)}}}
+end(ax1,ax2,flip) --> hipEnd(ax1,ax2,flip) : 0.5
+end(ax1,ax2,flip) --> flatEnd(ax1,ax2) : 0.5
+hipEnd(ax1,ax2,flip) : flip == 1 --> split(ax2){~1 : R(z,pi/2){I(corner)} | ~1 : R(z,pi){I(corner)}}
+hipEnd(ax1,ax2,flip) : flip == 0 --> split(ax2){~1 : I(corner) | ~1 : R(z,3*pi/2){I(corner)}}
+flatEnd(ax1,ax2,flip) : flip == 1 --> split(ax2){~1 : R(z,3*pi/2){I(right_angle_triangle)} | ~1 : R(z,pi/2){I(right_angle_triangle)}}
+
+
+plot --> split(x){~1 : left | ~2 : mid | ~1 : right}
+mid --> split(y){~1 : nil | ~3 : split(z){~2 : I(rect) | ~1 : midRoof}}
+midRoof --> split(y){~1 : R(z,3*pi/2){I(right_angle_triangle)} | ~1 : R(z,pi/2){I(right_angle_triangle)}}
+left --> split(y){~1 : nil | ~3 : split(z){~2 : I(rect) | ~1 : end(x,y,0)}} : 0.5
+
+right --> split(y){~1 : nil | ~3 : split(z){~2 : I(rect) | ~1 : end(x,y,1)}} : 0.5

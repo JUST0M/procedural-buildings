@@ -1,0 +1,5 @@
+0: plot --> S(~1, ~1, 14) split(z){10 : house | 4 : roof}
+1: house --> comp(f){bottom : r | left : b | right : r | front : r | back : b}
+2: r --> colour(red)
+3: b --> colour(blue)
+4: roof --> I(pyramid)
