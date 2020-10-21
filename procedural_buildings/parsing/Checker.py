@@ -1,5 +1,5 @@
-from Rule import *
-from Ops import OpChooseRuleWithPriority, Op
+from .Rule import *
+from ..Ops import OpChooseRuleWithPriority, Op
 
 class Checker:
     def __init__(self):

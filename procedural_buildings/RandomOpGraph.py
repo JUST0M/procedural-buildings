@@ -1,6 +1,6 @@
 from random import randint, random
-from Rule import Size
-from Ops import OpSplit, OpPrimitive, OpNil
+from .parsing.Rule import Size
+from .Ops import OpSplit, OpPrimitive, OpNil
 from math import ceil
 
 # Generate a random operation graph with the given parameters

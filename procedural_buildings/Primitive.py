@@ -1,5 +1,5 @@
 import numpy as np
-from BoxSplitter import Box
+from .BoxSplitter import Box
 
 import os
 
@@ -61,6 +61,7 @@ def primFromFile(fname):
 
 # basicPrims stores all primitive objects found in the primitive directory
 basicPrims = {}
-for file in os.listdir("primitives"):
+primDir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "primitives")
+for file in os.listdir(primDir):
     if file.endswith(".obj"):
-        basicPrims[os.path.splitext(file)[0]] = primFromFile(os.path.join("primitives", file))
+        basicPrims[os.path.splitext(file)[0]] = primFromFile(os.path.join(primDir, file))

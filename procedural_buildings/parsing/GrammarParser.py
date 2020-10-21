@@ -1,7 +1,7 @@
-from parsing.ParserAbstract import ParserAbstract
-from parsing.Lexer import Lexer
-from parsing.Parser import Parser
-from parsing.Checker import Checker
+from .ParserAbstract import ParserAbstract
+from .Lexer import Lexer
+from .Parser import Parser
+from .Checker import Checker
 
 
 class GrammarParser(ParserAbstract):

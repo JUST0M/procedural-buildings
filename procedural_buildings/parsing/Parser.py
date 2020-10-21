@@ -1,18 +1,18 @@
 from sly import Parser as SlyParser
-from Rule import Rule, Right, Left, Size
-from parsing.Lexer import Lexer
-from Ops import *
+from .Rule import Rule, Right, Left, Size
+from .Lexer import Lexer
+from ..Ops import *
 from sympy import symbols, Eq, Ne
 from numpy import pi
-from RandRange import RandRange, RandIntRange
+from ..RandRange import RandRange, RandIntRange
 
 
 class Parser(SlyParser):
-    #debugfile = 'parser.out'
 
     tokens = Lexer.tokens
 
     precedence = (
+        ('nonassoc', NEQ, EQ, LT, GT, LTE, GTE),
         ('left', PLUS, MINUS),
         ('left', TIMES, DIVIDE),
         ('right', UMINUS),
@@ -235,9 +235,9 @@ class Parser(SlyParser):
             self.vars[p.IDENT] = p.expr
         return
 
-    @_('axis')
+    @_('AXIS')
     def expr(self, p):
-        return p.axis
+        return self.axes[p.AXIS]
 
     @_('IDENT')
     def expr(self, p):
@@ -302,9 +302,9 @@ class Parser(SlyParser):
     def ruleParam(self, p):
         return p.expr
 
-    @_('axis')
-    def ruleParam(self, p):
-        return p.axis
+    #@_('axis')
+    #def ruleParam(self, p):
+    #    return p.axis
 
     @_('ruleParam')
     def ruleParams(self, p):
@@ -318,6 +318,10 @@ class Parser(SlyParser):
     @_('AXIS')
     def axis(self, p):
         return self.axes[p.AXIS]
+        
+    @_('INT')
+    def axis(self, p):
+        return p.INT
 
     @_('IDENT')
     def axis(self, p):

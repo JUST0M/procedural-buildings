@@ -1,7 +1,7 @@
-from Ops import OpPrimitive, OpNil, Op, OpSplit
-from BoxSplitter import Box, Container, boxesToOp
-from Rule import Size
-from Primitive import Primitive, basicPrims
+from .Ops import OpPrimitive, OpNil, Op, OpSplit
+from .BoxSplitter import Box, Container, boxesToOp
+from .parsing.Rule import Size
+from .Primitive import Primitive, basicPrims
 
 # Given an object file name, create an operation graph representing the object
 def objToOpGraph(fname, primDict=basicPrims.copy()):

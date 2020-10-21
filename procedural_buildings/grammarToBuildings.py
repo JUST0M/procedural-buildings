@@ -1,7 +1,7 @@
 import sys
 import numpy as np
-from Scope import Scope
-from Processor import Processor
+from .Scope import Scope
+from .Processor import Processor
 
 # Designed to be run from the command line to turn a grammar into a .obj file
 if __name__ == '__main__':

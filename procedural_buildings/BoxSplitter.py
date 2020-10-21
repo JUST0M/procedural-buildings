@@ -1,5 +1,5 @@
-from Rule import Size
-from Ops import OpSplit, OpNil, OpPrimitive
+from .parsing.Rule import Size
+from .Ops import OpSplit, OpNil, OpPrimitive
 from itertools import cycle
 import numpy as np
 

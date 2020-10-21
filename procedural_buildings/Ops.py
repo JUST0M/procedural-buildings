@@ -1,8 +1,10 @@
 from random import random
-from Rule import Size
-from sympy import expr, boolalg, numbers
+from .parsing.Rule import Size
+from sympy import boolalg, numbers
+from sympy.core.expr import Expr
+from sympy.core.relational import Relational
 from collections import defaultdict
-from RandRange import interval, RandRange
+from .RandRange import RandRange
 
 
 class Args:
@@ -33,9 +35,9 @@ class Args:
             return Size(self.evalArg(arg.size, env), arg.isRelative)
         elif t == int or t == str or t == float:
             return arg
-        elif issubclass(t, interval):
+        elif issubclass(t, RandRange):
             return arg.evaluate()
-        elif issubclass(t, expr.Expr):
+        elif issubclass(t, Expr) or issubclass(t,Relational):
             evaled = arg.subs(env)
             if len(evaled.free_symbols) > 0:
                 return str(evaled)
@@ -93,8 +95,11 @@ class Args:
         elif t2 == str:
             return None
         else:
-            if True:
-                return RandRange([arg1, arg2])
+            if not issubclass(t1, RandRange):
+                arg1 = RandRange(arg1, arg1)
+            if not issubclass(t2, RandRange):
+                arg2 = RandRange(arg2, arg2)
+            return arg1.union(arg2)
 
     def __getitem__(self, key):
         return self.allArgs[key]

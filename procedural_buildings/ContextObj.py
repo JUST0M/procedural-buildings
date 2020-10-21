@@ -1,4 +1,4 @@
-from Primitive import basicPrims
+from .Primitive import basicPrims
 class ContextOBJ:
 
     # Create a new context with prims being the set of known primitives

@@ -1,17 +1,19 @@
-from parsing.GrammarParser import GrammarParser
+from .parsing.GrammarParser import GrammarParser
 #from ScopeNewNew import Scope
-from Scope import Scope
+from .Scope import Scope
 import numpy as np
-from ContextObj import ContextOBJ
-from Ops import OpRepeat, OpSplit, OpNil
-from Rule import Size
-from ObjReader import objsToOpGraph, objToOpGraph
-from RandomOpGraph import genRandOpGraph
+from .ContextObj import ContextOBJ
+from .Ops import OpRepeat, OpSplit, OpNil
+from .parsing.Rule import Size
+from .ObjReader import objsToOpGraph, objToOpGraph
+from .RandomOpGraph import genRandOpGraph
 from time import time
 
 class Processor:
     grammarDir = '../grammars/'
     outDir = 'outputs/'
+    engineeredDir = 'engineered/'
+    fileExt = 'obj'
 
     # Given an op graph, run it on the given scope and write the output to a file
     def opGraphToObj(self, opGraph, startScope, outFile, context=ContextOBJ()):
@@ -58,7 +60,7 @@ class Processor:
         fileNames = []
         for i in range(n):
             print(f"Generating obj file {i+1}/{n}")
-            fname = filePrefix + str(i)
+            fname = f"{filePrefix}{i}.{self.fileExt}"
             self.opGraphToObj(opGraph, startScope, fname)
             fileNames.append(fname)
         return fileNames
@@ -79,7 +81,7 @@ class Processor:
         print("Creating grammar from op graph")
         grammarText = opGraph.toGrammarText()
         print("Writing grammar to file")
-        with open(f"engineered/{grammarFile}", "w") as f:
+        with open(f"{self.engineeredDir}{grammarFile}", "w") as f:
             f.write(grammarText)
         print("Done")
 
